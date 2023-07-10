@@ -1,7 +1,44 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {})
+var currentDate = dayjs().format('MM-DD-YYYY');
+var currentHour = parseInt(dayjs().format('H'));
+
+$(function () {
+
+  $('#currentDay').text(currentDate);
+
+  var timeBlocks=$('.time-block')
+for (var i=0; i< timeBlocks.length;i++){
+  var block = $(timeBlocks[i]);
+  var blockHour = parseInt(block.attr('id').split('-')[1]);   
+console.log(currentHour)
+
+  
+
+ if (blockHour < currentHour){
+  block.addClass('past');
+} else if (blockHour===currentHour){
+  block.addClass('present');
+} else {
+  block.addClass('future');
+}
+}});
+
+$('.saveBtn').click(function(){
+  var task = $(this).siblings('.description').val()
+  
+  var taskTime = $(this).parent().attr('id')
+
+  localStorage.setItem(taskTime, task)
+
+})
+
+for (var i = 9; i< 18; i++){
+  
+  $('#hour-'+i+" .description").val(localStorage.getItem('hour-'+i))
+}
+
 
 // Variables at top, then functions, then event listenter at bottom
 
@@ -13,11 +50,11 @@ $(function () {})
   // useful when saving the description in local storage?
   //
 //1. 
-$('.saveBtn').on("click", funtion() {
- console.log($(this));
+//$('.saveBtn').on("click", funtion() {
+//console.log($(this));
 // figure out what hour block youre in by using $(this)
 // key names needs to match the key names for getItem localStorage
-}) 
+ 
 //--this selects every element that has that class
 // setItem for localStorage to save the input to corresponding hour by using keyword 'this' to figure out 
 //2. 
@@ -35,15 +72,15 @@ $('.saveBtn').on("click", funtion() {
 
 // 1. Use JQUERY.children (?) to select child elements 
 
-document.querySelectorAll('.time-block')//this would give an array of all elements with this class name
+//document.querySelectorAll('.time-block')//this would give an array of all elements with this class name
 //but we need to use JQUERY so dont use this.. 
 
 // 2. use dayjs() to grab current time (just the hour)
 // 3. Create for loop to go over all the time blocks. 
 
 // inside the forloop selected the time block
-      for(i=9; i <18; i++) // MILITARY TIME
-      document.querySelector('#hour-' + i)// USE JQUERY SELECTOR
+      //for(i=9; i <18; i++) // MILITARY TIME
+     // document.querySelector('#hour-' + i)// USE JQUERY SELECTOR
       
     // a. use if statement to compare the actual hour vs hour of that block to determine past present or future class 
     // b. if current hour less than current time block, then block is future
@@ -61,7 +98,7 @@ document.querySelectorAll('.time-block')//this would give an array of all elemen
           //a. Have a separate key in localStorage for each hour
           //.b create a for loop for hour 9- 18 
               //a. check localStorage within the lopp
-              localStorage.getItem()
+              //localStorage.getItem()
               // if there is something in storage we need to display the items (this will be hard) (maybe add id to text area?)
               //inside text area of corresponding hour
               //use id selector for the text area
@@ -74,7 +111,7 @@ document.querySelectorAll('.time-block')//this would give an array of all elemen
 
 
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // TODO: Add code to display the current date in the header of the page.-----DONE
     //1. create var for dayjs to get current date (just the date) add time optional
     //2. $('currentDay').txt(var) to display date
     
@@ -82,13 +119,6 @@ document.querySelectorAll('.time-block')//this would give an array of all elemen
 
 
 
-
-
-//         My PSeudo-Code (with Henry)
-// This is a Day Scheduler / Should be able to take notes
-// 9 separate text fields that save into local storage
-// Apply colors to past presetn future time block
-// Add code to display to current date
 
 
 
