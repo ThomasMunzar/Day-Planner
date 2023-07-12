@@ -1,8 +1,8 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var currentDate = dayjs().format('MM-DD-YYYY h:mm');
-var currentHour = parseInt(dayjs().format('H'));
+var currentDate = dayjs().format('MM-DD-YYYY h:mm'); //format of Date and time in header
+var currentHour = parseInt(dayjs().format('H'));// Using just the HOUR for the Hour blocks in work day
 
 $(function () {
 
@@ -11,12 +11,12 @@ $(function () {
   var timeBlocks=$('.time-block')
 for (var i=0; i< timeBlocks.length;i++){
   var block = $(timeBlocks[i]);
-  var blockHour = parseInt(block.attr('id').split('-')[1]);   
+  var blockHour = parseInt(block.attr('id').split('-')[1]);   // this .split is taking the value to the right of the '-'. Pretty cool.
 console.log(currentHour)
 
   
 
- if (blockHour < currentHour){
+ if (blockHour < currentHour){ //This section will give time box a class based on the current hour (past,present,future)
   block.addClass('past');
 } else if (blockHour===currentHour){
   block.addClass('present');
