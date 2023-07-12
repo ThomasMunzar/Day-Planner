@@ -11,7 +11,7 @@
 
 ## Description
 
-[Visit The Deployed Site](LINK)
+[Visit The Deployed Site](https://thomasmunzar.github.io/Day-Planner/)
 
 The goal of this project was to create a daily planner for your average work week. I was given starter code so I did not focus too much on HTML or CSS, I did spend a long time making the JavaScript do what I wanted it to do on with the website.  First, I connected the site to Day.js to allow myself to use a live clock and calendar for the site. Linking to this powerful tool allowed me to make functions that ; showed past present and future time slot with different colors and display the current date and time in the header.  It was really cool to just link to this tool using a simple link :
 
